@@ -5,7 +5,9 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Raleway', sans-serif;
         background-color: #9064BF;
     }
-
+    input, button{
+        font-family: 'Raleway', sans-serif;
+    }
 `;
 
 export default GlobalStyle;
