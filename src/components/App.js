@@ -4,27 +4,30 @@ import SignUp from './SignUp.js';
 import Home from './Home.js';
 import InOutFlow from './InOutFlow.js';
 import Statement from './Statement.js';
+import UserContext from '../contexts/UserContext.js';
 
 export default function App(){
     return(
-        <BrowserRouter>
-            <Switch>
-                <Route path='/' exact>
-                    <LogIn />
-                </Route>
-                <Route path='/sign-up' exact>
-                    <SignUp />
-                </Route>
-                <Route path='/home' exact>
-                    <Home />
-                </Route>
-                <Route path='/inoutflow' exact>
-                    <InOutFlow />
-                </Route>
-                <Route path='/statement' exact>
-                    <Statement />
-                </Route>
-            </Switch>
-        </BrowserRouter>
+        <UserContext.Provider value=''>
+            <BrowserRouter>
+                <Switch>
+                    <Route path='/' exact>
+                        <LogIn />
+                    </Route>
+                    <Route path='/sign-up' exact>
+                        <SignUp />
+                    </Route>
+                    <Route path='/home' exact>
+                        <Home />
+                    </Route>
+                    <Route path='/inoutflow' exact>
+                        <InOutFlow />
+                    </Route>
+                    <Route path='/statement' exact>
+                        <Statement />
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+        </UserContext.Provider>
     );
 }
