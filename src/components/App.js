@@ -23,9 +23,6 @@ export default function App(){
                     <Route path='/inoutflow' exact>
                         <InOutFlow />
                     </Route>
-                    <Route path='/statement' exact>
-                        <Statement />
-                    </Route>
                 </Switch>
             </BrowserRouter>
         </UserContext.Provider>
