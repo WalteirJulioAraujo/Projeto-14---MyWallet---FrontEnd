@@ -38,3 +38,11 @@ export const SubmitButton = styled.button`
     border: none;
     background-color: #a328d6;
 `;
+
+export const RedirectTo = styled.div`
+    width: fit-content;
+    margin: 32px auto 0 auto;
+    font-size: 15px;
+    color: #fff;
+    font-weight: bold;
+`;
