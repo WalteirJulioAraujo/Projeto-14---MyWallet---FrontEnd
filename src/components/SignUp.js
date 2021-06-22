@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import styled from "styled-components";
-import { Logo,InputFields, SubmitButton } from "../styledComponents/Content";
+import { Logo,InputFields, SubmitButton, RedirectTo } from "../styledComponents/Content";
 
 export default function SignUp() {
     const [ name, setName ] = useState("");
@@ -74,17 +73,10 @@ export default function SignUp() {
                     <SubmitButton type="submit" disabled={disabled}>Cadastrar</SubmitButton>
                 </form>
             </InputFields>
-            <RedirectToLogin>
+            <RedirectTo>
                 <Link to="/">Já tem uma conta? Entre agora!</Link>
-            </RedirectToLogin>
+            </RedirectTo>
         </>
     );
 }
 
-const RedirectToLogin = styled.div`
-    width: fit-content;
-    margin: 32px auto 0 auto;
-    font-size: 15px;
-    color: #fff;
-    font-weight: bold;
-`;
