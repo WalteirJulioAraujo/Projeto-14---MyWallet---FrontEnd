@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default function Entry({ date, name, price, type }){
+export default function Entry({ date, name, value, type }){
     return(
         <EntryInfo type={type}>
             <div className='container'>
@@ -8,7 +8,7 @@ export default function Entry({ date, name, price, type }){
                 <div className='name'>{name}</div>
             </div>
             
-            <div className='price'>{price}</div>
+            <div className='value'>{value}</div>
         </EntryInfo>
     )
 }
@@ -32,7 +32,7 @@ const EntryInfo = styled.div`
         color: #000;
     }
 
-    .price{
+    .value{
         color: ${ props => props.type  ? '#42AD22':'#C73B19'}
     }
 `;
