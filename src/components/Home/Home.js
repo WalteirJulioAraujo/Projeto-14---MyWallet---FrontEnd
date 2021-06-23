@@ -39,7 +39,7 @@ export default function Home({ setInOrOut }){
             </Container>
             {hasEntrys
             ?   <Statement>
-                    {data.map((e)=><Entry date={e.date} name={e.name} price={e.price} type={e.type} />)}
+                    {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} price={e.price} type={e.type} />)}
                 </Statement>
             :   <EmptyStatement>
                     <p>Não há registros de <br/> entrada ou saída</p>
