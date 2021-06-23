@@ -1,11 +1,14 @@
-import styled from 'styled-components';
 import { ExitOutline } from 'react-ionicons';
 import { useHistory } from 'react-router-dom';
 import { AddCircleOutline } from 'react-ionicons'
 import { RemoveCircleOutline } from 'react-ionicons'
+import { useState } from 'react';
+import Entry from '../Entry';
+import { Statement, EmptyStatement, NameDiv, Container, InOutContainer } from './StylesHome.js'
 
 export default function Home({ setInOrOut }){
-    
+    const [ hasEntrys, setHasEntrys ] = useState(false);
+    const [ data, setData ] = useState([{date:'30/11', name:'Almoço mãe', price:'39,90', type:0},{date:'02/12', name:'Deposito', price:'120,00', type:1}]);
     let history = useHistory();
 
     function Exit(){
@@ -34,9 +37,14 @@ export default function Home({ setInOrOut }){
                     onClick={Exit}
                 />
             </Container>
-            <EmptyStatement>
+            {hasEntrys
+            ?   <Statement>
+                    {data.map((e)=><Entry date={e.date} name={e.name} price={e.price} type={e.type} />)}
+                </Statement>
+            :   <EmptyStatement>
                     <p>Não há registros de <br/> entrada ou saída</p>
-            </EmptyStatement>
+                </EmptyStatement>    
+            }
             <InOutContainer>
                 <div onClick={() => NewFlow(1)}>
                     <AddCircleOutline
@@ -61,72 +69,3 @@ export default function Home({ setInOrOut }){
     )
 }
 
-const InOutContainer = styled.div`
-    width: 85%;
-    height: 14.5vh;
-    margin: 13px auto 0 auto;
-    display: flex;
-    justify-content: space-between;
-    div{
-        height: 100%;
-        background-color: #A328D6;
-        width: 45%;
-        border-radius: 5px;
-        padding: 4px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-between;
-        p{
-            font-size: 17px;
-            font-weight: bold;
-            color: #fff;
-        }
-        :hover{
-            cursor: pointer;
-        }
-    }
-
-`
-
-const Statement = styled.div`
-    width: 85%;
-    height: 66vh;
-    margin: 22px auto 0 auto;
-    border-radius: 5px;
-    background-color: #fff;
-
-`
-const EmptyStatement = styled.div`
-    width: 85%;
-    height: 66vh;
-    margin: 22px auto 0 auto;
-    border-radius: 5px;
-    background-color: #fff;
-    text-align: center;
-    font-size: 20px;
-    color: #868686;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-
-const NameDiv = styled.div`
-    width: fit-content;
-    font-size: 26px;
-    font-weight: bold;
-    color: #fff;
-`;
-
-const Container = styled.div`
-    width:85%;
-    margin: 30px auto 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .exitIcon:hover{
-        cursor: pointer;
-    }
-`

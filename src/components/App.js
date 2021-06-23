@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LogIn from './LogIn.js';
 import SignUp from './SignUp.js';
-import Home from './Home.js';
+import Home from './Home/Home.js';
 import InOutFlow from './InOutFlow.js';
 import UserContext from '../contexts/UserContext.js';
 import GlobalStyle from '../styledComponents/GlobalStyle';
