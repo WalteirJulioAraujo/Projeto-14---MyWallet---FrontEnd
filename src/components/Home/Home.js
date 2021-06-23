@@ -5,11 +5,26 @@ import { RemoveCircleOutline } from 'react-ionicons'
 import { useState } from 'react';
 import Entry from '../Entry';
 import { Statement, EmptyStatement, NameDiv, Container, InOutContainer } from './StylesHome.js'
+import axios from 'axios';
 
 export default function Home({ setInOrOut }){
     const [ hasEntrys, setHasEntrys ] = useState(true);
     const [ data, setData ] = useState([{date:'30/11', name:'Almoço mãe', value:'39,90', type:0},{date:'02/12', name:'Deposito', value:'120,00', type:1}]);
+    const [ searchError, setSearchError ] = useState(false);
     let history = useHistory();
+
+
+    function SearchData(){
+        const request = axios.get('http://localhost:4001/inout');
+        request.then((e)=>{
+            setHasEntrys(true);
+            setData(e.data);
+        });
+        request.catch(()=>{
+            setHasEntrys(false);
+            setSearchError(true);
+        })
+    }
 
     function Exit(){
         history.push('/');
@@ -42,7 +57,10 @@ export default function Home({ setInOrOut }){
                     {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} value={e.value} type={e.type} />)}
                 </Statement>
             :   <EmptyStatement>
-                    <p>Não há registros de <br/> entrada ou saída</p>
+                {searchError
+                ? <p>Erro ao procurar <br/> os dados</p>
+                : <p>Não há registros de <br/> entrada ou saída</p>
+                }
                 </EmptyStatement>    
             }
             <InOutContainer>
