@@ -7,7 +7,7 @@ import Entry from '../Entry';
 import { Statement, EmptyStatement, NameDiv, Container, InOutContainer } from './StylesHome.js'
 
 export default function Home({ setInOrOut }){
-    const [ hasEntrys, setHasEntrys ] = useState(false);
+    const [ hasEntrys, setHasEntrys ] = useState(true);
     const [ data, setData ] = useState([{date:'30/11', name:'Almoço mãe', price:'39,90', type:0},{date:'02/12', name:'Deposito', price:'120,00', type:1}]);
     let history = useHistory();
 
