@@ -4,12 +4,22 @@ import { useHistory } from 'react-router-dom';
 import { AddCircleOutline } from 'react-ionicons'
 import { RemoveCircleOutline } from 'react-ionicons'
 
-export default function Home(){
+export default function Home({ setInOrOut }){
     
     let history = useHistory();
 
     function Exit(){
         history.push('/');
+    }
+
+    function NewFlow(e){
+        if(e===0){
+            setInOrOut(false);
+        }
+        if(e===1){
+            setInOrOut(true);
+        }
+        history.push('/inoutflow');
     }
 
     return(
@@ -28,7 +38,7 @@ export default function Home(){
                     <p>Não há registros de <br/> entrada ou saída</p>
             </EmptyStatement>
             <InOutContainer>
-                <div>
+                <div onClick={() => NewFlow(1)}>
                     <AddCircleOutline
                         className='icon'
                         color={'#fff'} 
@@ -37,7 +47,7 @@ export default function Home(){
                     />
                     <p>Nova<br/>Entrada</p>
                 </div>
-                <div>
+                <div onClick={() => NewFlow(0)}>
                     <RemoveCircleOutline
                         className='icon'
                         color={'#fff'} 

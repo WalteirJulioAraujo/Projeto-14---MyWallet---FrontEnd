@@ -5,8 +5,10 @@ import Home from './Home.js';
 import InOutFlow from './InOutFlow.js';
 import UserContext from '../contexts/UserContext.js';
 import GlobalStyle from '../styledComponents/GlobalStyle';
+import { useState } from 'react';
 
 export default function App(){
+    const [ inOrOut, setInOrOut ] = useState(undefined);
     return(
         <>
             <GlobalStyle />
@@ -20,10 +22,10 @@ export default function App(){
                             <SignUp />
                         </Route>
                         <Route path='/home' exact>
-                            <Home />
+                            <Home setInOrOut={setInOrOut} />
                         </Route>
                         <Route path='/inoutflow' exact>
-                            <InOutFlow />
+                            <InOutFlow inOrOut={inOrOut} />
                         </Route>
                     </Switch>
                 </BrowserRouter>
