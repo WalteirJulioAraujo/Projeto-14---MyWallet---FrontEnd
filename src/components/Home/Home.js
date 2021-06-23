@@ -8,7 +8,7 @@ import { Statement, EmptyStatement, NameDiv, Container, InOutContainer } from '.
 
 export default function Home({ setInOrOut }){
     const [ hasEntrys, setHasEntrys ] = useState(true);
-    const [ data, setData ] = useState([{date:'30/11', name:'Almoço mãe', price:'39,90', type:0},{date:'02/12', name:'Deposito', price:'120,00', type:1}]);
+    const [ data, setData ] = useState([{date:'30/11', name:'Almoço mãe', value:'39,90', type:0},{date:'02/12', name:'Deposito', value:'120,00', type:1}]);
     let history = useHistory();
 
     function Exit(){
@@ -39,7 +39,7 @@ export default function Home({ setInOrOut }){
             </Container>
             {hasEntrys
             ?   <Statement>
-                    {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} price={e.price} type={e.type} />)}
+                    {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} value={e.value} type={e.type} />)}
                 </Statement>
             :   <EmptyStatement>
                     <p>Não há registros de <br/> entrada ou saída</p>

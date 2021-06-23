@@ -54,7 +54,7 @@ export default function LogIn(){
                 </form>
             </InputFields>
             <RedirectTo>
-                <Link to="/sign-up">Primeira vez? Cadastre-se!</Link>
+                <Link to="/signup">Primeira vez? Cadastre-se!</Link>
             </RedirectTo>
         </>
     )
