@@ -9,7 +9,7 @@ export const Logo = styled.div`
 `;
 
 export const InputFields = styled.div`
-    width: 80%;
+    width: 85%;
     margin: 26px auto 0 auto;
     input {
         height: 58px;
