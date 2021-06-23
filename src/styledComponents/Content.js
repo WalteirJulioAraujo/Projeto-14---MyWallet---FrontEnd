@@ -24,6 +24,14 @@ export const InputFields = styled.div`
     input::placeholder {
         color: #000;
     }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }   
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
 `;
 
 export const SubmitButton = styled.button`
@@ -37,6 +45,10 @@ export const SubmitButton = styled.button`
     display: block;
     border: none;
     background-color: #a328d6;
+
+    :hover{
+        cursor: pointer;
+    }
 `;
 
 export const RedirectTo = styled.div`

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { InputFields, SubmitButton } from '../styledComponents/Content';
 
@@ -52,7 +52,7 @@ export default function InOutFlow({ inOrOut }){
                         <SubmitButton type="submit" disabled={disabled}>{'Salvar ' + typeTitle}</SubmitButton>
                 </form>
             </InputFields>
-            
+            <BackToHome><Link to='/home'>Voltar</Link></BackToHome>
         </>
     
     )
@@ -65,3 +65,20 @@ const Title = styled.div`
     font-weight: bold;
     color: #fff;
 `;
+
+const BackToHome = styled.button`
+    border: none;
+    display: block;
+    width: 85%;
+    height: 46px;
+    margin: 10px auto 0 auto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #a328d6;
+
+    :hover{
+        cursor: pointer;
+    }
+`
