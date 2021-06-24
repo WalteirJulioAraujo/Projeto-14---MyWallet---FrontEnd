@@ -8,11 +8,12 @@ import GlobalStyle from '../styledComponents/GlobalStyle';
 import { useState } from 'react';
 
 export default function App(){
+    const [ user, setUser ] = useState(undefined);
     const [ inOrOut, setInOrOut ] = useState(undefined);
     return(
         <>
             <GlobalStyle />
-            <UserContext.Provider value=''>
+            <UserContext.Provider value={{ user ,setUser }}>
                 <BrowserRouter>
                     <Switch>
                         <Route path='/' exact>
