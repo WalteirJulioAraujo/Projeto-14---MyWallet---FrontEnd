@@ -21,16 +21,14 @@ export default function Home({ setInOrOut }){
     useEffect(()=>SearchData(),[]);
 
     function SearchData(){
-        console.log('1')
         const config = { headers: { Authorization: `Bearer ${token}` } };
         const request = axios.get('http://localhost:4001/inout',config);
         request.then((e)=>{
-            console.log('2')
-            e.data.length? setHasEntrys(true) : setHasEntrys(false);
-            setData(e.data);
+            e.data.data.length? setHasEntrys(true) : setHasEntrys(false);
+            console.log(e.data.total);
+            setData(e.data.data);
         });
         request.catch(()=>{
-            console.log('3')
             setHasEntrys(false);
             setSearchError(true);
         })
