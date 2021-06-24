@@ -14,7 +14,8 @@ export default function InOutFlow({ inOrOut }){
     function SendForms( ){
         setDisabled(true);
         const valueInCents = value*100;
-        const body = { name: description, value:valueInCents, type: inOrOut };
+        const validDescription = description.trim();
+        const body = { name: validDescription, value:valueInCents, type: inOrOut };
         const request = axios.post('/inout',body);
         request.then(()=>{
             history.push('/home')
