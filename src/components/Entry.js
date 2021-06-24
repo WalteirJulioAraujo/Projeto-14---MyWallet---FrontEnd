@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 
 export default function Entry({ date, name, value, type }){
     const formatDate = dayjs(date).format('DD/MM');
+    const formatValue = (value / 100).toFixed(2);
     return(
         <EntryInfo type={type}>
             <div className='container'>
@@ -10,7 +11,7 @@ export default function Entry({ date, name, value, type }){
                 <div className='name'>{name}</div>
             </div>
             
-            <div className='value'>{value}</div>
+            <div className='value'>{formatValue}</div>
         </EntryInfo>
     )
 }

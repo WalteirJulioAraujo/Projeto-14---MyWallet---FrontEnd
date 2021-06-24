@@ -15,15 +15,16 @@ export default function Home({ setInOrOut }){
     const [ searchError, setSearchError ] = useState(false);
     let history = useHistory();
 
-    const configSessionStorage = sessionStorage.getItem("userMyWallet");
-    const token = configSessionStorage.token;
-
+    const name = sessionStorage.getItem("userMyWallet");
+    const token = sessionStorage.getItem("userMyWalletToken");
+    
     useEffect(()=>SearchData(),[]);
 
     function SearchData(){
         const config = { headers: { Authorization: `Bearer ${token}` } };
         const request = axios.get('http://localhost:4001/inout',config);
         request.then((e)=>{
+            console.log(e.data);
             e.data.length? setHasEntrys(true) : setHasEntrys(false);
             setData(e.data);
         });
@@ -35,6 +36,7 @@ export default function Home({ setInOrOut }){
 
     function Exit(){
         sessionStorage.removeItem("userMyWallet");
+        sessionStorage.removeItem("userMyWalletToken");
         history.push('/');
     }
 
@@ -51,7 +53,7 @@ export default function Home({ setInOrOut }){
     return(
         <>
             <Container>
-                <NameDiv>Olá, {user.name}</NameDiv>
+                <NameDiv>Olá, {name}</NameDiv>
                 <ExitOutline 
                     className='exitIcon'
                     color={'#fff'} 

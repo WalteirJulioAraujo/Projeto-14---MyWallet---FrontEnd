@@ -11,7 +11,7 @@ export default function LogIn(){
     const [ disabled, setDisabled ] = useState(false);
     let history = useHistory();
 
-    if(!sessionStorage.getItem("userMyWallet")){
+    if(sessionStorage.getItem("userMyWallet")){
         history.push('/home');
     }
 
@@ -23,8 +23,10 @@ export default function LogIn(){
         const body = { email, password };
         const request = axios.post('http://localhost:4001/login',body);
         request.then((e)=>{
-            sessionStorage.setItem("userMyWallet",e.data);
-            setUser(e.data);
+            console.log(e.data)
+            sessionStorage.setItem("userMyWallet",e.data.name);
+            sessionStorage.setItem("userMyWalletToken",e.data.token);
+            setUser(e.data.name);
             history.push('/home');
         })
         request.catch((e)=>{

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
+import { Alert } from 'react-ionicons';
 import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import UserContext from '../contexts/UserContext';
@@ -12,20 +13,24 @@ export default function InOutFlow({ inOrOut }){
     const [ disabled, setDisabled ] = useState(false);
     let history = useHistory();
 
-    const configSessionStorage = sessionStorage.getItem("userMyWallet");
-    const token = configSessionStorage.token;
+    const token = sessionStorage.getItem("userMyWalletToken");
+    
 
-    function SendForms( ){
-        if(value!==value.toFixed(2)){
-            alert("O valor deve ter no máximo 2 casas decimais!");
-            return;
-        }
+    function SendForms(e){
+        e.preventDefault();
+        const validValue = Number(value).toFixed(2);
+
+        // if(validValue!==validValue.toFixed(2)){
+        //     alert("O valor deve ter no máximo 2 casas decimais!");
+        //     return;
+        // }
+        console.log(inOrOut);
         setDisabled(true);
-        const valueInCents = value*100;
+        const valueInCents = validValue*100;
         const validDescription = description.trim();
         const body = { name: validDescription, value:valueInCents, type: inOrOut };
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const request = axios.post('/inout',body,config);
+        const request = axios.post('http://localhost:4001/inout',body,config);
         request.then(()=>{
             history.push('/home')
         });
@@ -63,7 +68,7 @@ export default function InOutFlow({ inOrOut }){
                         <SubmitButton type="submit" disabled={disabled}>{'Salvar ' + typeTitle}</SubmitButton>
                 </form>
             </InputFields>
-            <BackToHome><Link to='/home'>Voltar</Link></BackToHome>
+            <Link to='/home'><BackToHome>Voltar</BackToHome></Link>
         </>
     
     )

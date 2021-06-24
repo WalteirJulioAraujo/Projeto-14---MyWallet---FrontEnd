@@ -11,7 +11,7 @@ export default function SignUp() {
     const [ disabled, setDisabled ] = useState(false);
     let history = useHistory();
 
-    if(!sessionStorage.getItem("userMyWallet")){
+    if(sessionStorage.getItem("userMyWallet")){
         history.push('/home');
     }
 
