@@ -19,7 +19,8 @@ export default function SignUp() {
         }
         setDisabled(true);
 
-        const body = { name, email, password };
+        const validName = name.trim(); 
+        const body = { name: validName, email, password };
         const request = axios.post('http://localhost:4001/signup',body);
         request.then((e)=>{
             history.push('/');
