@@ -18,7 +18,7 @@ export default function Home({ setInOrOut }){
     function SearchData(){
         const request = axios.get('http://localhost:4001/inout');
         request.then((e)=>{
-            setHasEntrys(true);
+            e.data.length? setHasEntrys(true) : setHasEntrys(false);
             setData(e.data);
         });
         request.catch(()=>{
