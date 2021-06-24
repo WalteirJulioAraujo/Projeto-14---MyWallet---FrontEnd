@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import dayjs from 'dayjs;'
+import dayjs from 'dayjs';
+
 export default function Entry({ date, name, value, type }){
     const formatDate = dayjs(date).format('DD/MM');
     return(
