@@ -2,7 +2,7 @@ import { ExitOutline } from 'react-ionicons';
 import { useHistory } from 'react-router-dom';
 import { AddCircleOutline } from 'react-ionicons'
 import { RemoveCircleOutline } from 'react-ionicons'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Entry from '../Entry';
 import { Statement, EmptyStatement, NameDiv, Container, InOutContainer } from './StylesHome.js'
 import axios from 'axios';
@@ -13,6 +13,7 @@ export default function Home({ setInOrOut }){
     const [ searchError, setSearchError ] = useState(false);
     let history = useHistory();
 
+    // useEffect(()=>SearchData(),[]);
 
     function SearchData(){
         const request = axios.get('http://localhost:4001/inout');
