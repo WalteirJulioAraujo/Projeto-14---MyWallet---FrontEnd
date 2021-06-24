@@ -16,6 +16,10 @@ export default function InOutFlow({ inOrOut }){
     const token = configSessionStorage.token;
 
     function SendForms( ){
+        if(value!==value.toFixed(2)){
+            alert("O valor deve ter no máximo 2 casas decimais!");
+            return;
+        }
         setDisabled(true);
         const valueInCents = value*100;
         const validDescription = description.trim();
