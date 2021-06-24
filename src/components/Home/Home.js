@@ -2,21 +2,27 @@ import { ExitOutline } from 'react-ionicons';
 import { useHistory } from 'react-router-dom';
 import { AddCircleOutline } from 'react-ionicons'
 import { RemoveCircleOutline } from 'react-ionicons'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Entry from '../Entry';
 import { Statement, EmptyStatement, NameDiv, Container, InOutContainer } from './StylesHome.js'
 import axios from 'axios';
+import UserContext from '../../contexts/UserContext';
 
 export default function Home({ setInOrOut }){
+    const { user } = useContext(UserContext);
     const [ hasEntrys, setHasEntrys ] = useState(true);
     const [ data, setData ] = useState([{date:'30/11', name:'Almoço mãe', value:'39,90', type:0},{date:'02/12', name:'Deposito', value:'120,00', type:1}]);
     const [ searchError, setSearchError ] = useState(false);
     let history = useHistory();
 
-    // useEffect(()=>SearchData(),[]);
+    const configSessionStorage = sessionStorage.getItem("userMyWallet");
+    const token = configSessionStorage.token;
+
+    useEffect(()=>SearchData(),[]);
 
     function SearchData(){
-        const request = axios.get('http://localhost:4001/inout');
+        const config = { headers: { Authorization: `Bearer ${token}` } };
+        const request = axios.get('http://localhost:4001/inout',config);
         request.then((e)=>{
             e.data.length? setHasEntrys(true) : setHasEntrys(false);
             setData(e.data);
@@ -28,6 +34,7 @@ export default function Home({ setInOrOut }){
     }
 
     function Exit(){
+        sessionStorage.removeItem("userMyWallet");
         history.push('/');
     }
 
@@ -44,7 +51,7 @@ export default function Home({ setInOrOut }){
     return(
         <>
             <Container>
-                <NameDiv>Olá, Fulano</NameDiv>
+                <NameDiv>Olá, {user.name}</NameDiv>
                 <ExitOutline 
                     className='exitIcon'
                     color={'#fff'} 

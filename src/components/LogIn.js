@@ -11,15 +11,19 @@ export default function LogIn(){
     const [ disabled, setDisabled ] = useState(false);
     let history = useHistory();
 
+    if(!sessionStorage.getItem("userMyWallet")){
+        history.push('/home');
+    }
+
     function SendForms(e){
         e.preventDefault();
         
         setDisabled(true);
-
+    
         const body = { email, password };
         const request = axios.post('http://localhost:4001/login',body);
         request.then((e)=>{
-            //Vai receber { name, token };
+            sessionStorage.setItem("userMyWallet",e.data);
             setUser(e.data);
             history.push('/home');
         })
