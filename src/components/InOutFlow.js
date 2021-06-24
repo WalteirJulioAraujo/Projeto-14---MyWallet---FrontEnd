@@ -13,17 +13,14 @@ export default function InOutFlow({ inOrOut }){
     const [ disabled, setDisabled ] = useState(false);
     let history = useHistory();
 
-    const token = sessionStorage.getItem("userMyWalletToken");
+    const userSession = JSON.parse(sessionStorage.getItem('userMyWallet'));
+    const token = userSession.token;
     
 
     function SendForms(e){
         e.preventDefault();
         const validValue = Number(value).toFixed(2);
 
-        // if(validValue!==validValue.toFixed(2)){
-        //     alert("O valor deve ter no máximo 2 casas decimais!");
-        //     return;
-        // }
         console.log(inOrOut);
         setDisabled(true);
         const valueInCents = validValue*100;

@@ -23,9 +23,7 @@ export default function LogIn(){
         const body = { email, password };
         const request = axios.post('http://localhost:4001/login',body);
         request.then((e)=>{
-            console.log(e.data)
-            sessionStorage.setItem("userMyWallet",e.data.name);
-            sessionStorage.setItem("userMyWalletToken",e.data.token);
+            sessionStorage.setItem("userMyWallet", JSON.stringify(e.data));
             setUser(e.data.name);
             history.push('/home');
         })

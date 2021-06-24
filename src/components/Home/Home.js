@@ -11,24 +11,26 @@ import UserContext from '../../contexts/UserContext';
 export default function Home({ setInOrOut }){
     const { user } = useContext(UserContext);
     const [ hasEntrys, setHasEntrys ] = useState(true);
-    const [ data, setData ] = useState([{date:'30/11', name:'Almoço mãe', value:'39,90', type:0},{date:'02/12', name:'Deposito', value:'120,00', type:1}]);
+    const [ data, setData ] = useState([]);
     const [ searchError, setSearchError ] = useState(false);
     let history = useHistory();
 
-    const name = sessionStorage.getItem("userMyWallet");
-    const token = sessionStorage.getItem("userMyWalletToken");
+    const userSession = JSON.parse(sessionStorage.getItem('userMyWallet'));
+    const token = userSession.token;
     
     useEffect(()=>SearchData(),[]);
 
     function SearchData(){
+        console.log('1')
         const config = { headers: { Authorization: `Bearer ${token}` } };
         const request = axios.get('http://localhost:4001/inout',config);
         request.then((e)=>{
-            console.log(e.data);
+            console.log('2')
             e.data.length? setHasEntrys(true) : setHasEntrys(false);
             setData(e.data);
         });
         request.catch(()=>{
+            console.log('3')
             setHasEntrys(false);
             setSearchError(true);
         })
@@ -36,7 +38,7 @@ export default function Home({ setInOrOut }){
 
     function Exit(){
         sessionStorage.removeItem("userMyWallet");
-        sessionStorage.removeItem("userMyWalletToken");
+        // sessionStorage.removeItem("userMyWalletToken");
         history.push('/');
     }
 
@@ -53,7 +55,7 @@ export default function Home({ setInOrOut }){
     return(
         <>
             <Container>
-                <NameDiv>Olá, {name}</NameDiv>
+                <NameDiv>Olá, {userSession.name}</NameDiv>
                 <ExitOutline 
                     className='exitIcon'
                     color={'#fff'} 
