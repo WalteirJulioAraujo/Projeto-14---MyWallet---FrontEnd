@@ -12,12 +12,15 @@ export default function InOutFlow({ inOrOut }){
     const [ disabled, setDisabled ] = useState(false);
     let history = useHistory();
 
+    const configSessionStorage = sessionStorage.getItem("userMyWallet");
+    const token = configSessionStorage.token;
+
     function SendForms( ){
         setDisabled(true);
         const valueInCents = value*100;
         const validDescription = description.trim();
         const body = { name: validDescription, value:valueInCents, type: inOrOut };
-        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        const config = { headers: { Authorization: `Bearer ${token}` } };
         const request = axios.post('/inout',body,config);
         request.then(()=>{
             history.push('/home')

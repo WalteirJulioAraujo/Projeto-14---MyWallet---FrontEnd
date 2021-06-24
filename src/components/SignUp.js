@@ -11,6 +11,10 @@ export default function SignUp() {
     const [ disabled, setDisabled ] = useState(false);
     let history = useHistory();
 
+    if(!sessionStorage.getItem("userMyWallet")){
+        history.push('/home');
+    }
+
     function SendForms(e){
         e.preventDefault();
         if(password !== confirmPassword){
