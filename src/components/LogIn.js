@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 import { Logo,InputFields, SubmitButton, RedirectTo } from "../styledComponents/Content";
 
 export default function LogIn(){
-
+    const { user, setUser } = useContext(UserContext);
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ disabled, setDisabled ] = useState(false);
@@ -18,6 +19,8 @@ export default function LogIn(){
         const body = { email, password };
         const request = axios.post('http://localhost:4001/login',body);
         request.then((e)=>{
+            //Vai receber { name, token };
+            setUser(e.data);
             history.push('/home');
         })
         request.catch((e)=>{
