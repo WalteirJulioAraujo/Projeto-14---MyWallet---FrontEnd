@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import dayjs from 'dayjs';
+import { TrashBinOutline } from 'react-ionicons'
 
 export default function Entry({ date, name, value, type }){
     const formatDate = dayjs(date).format('DD/MM');
@@ -7,6 +8,11 @@ export default function Entry({ date, name, value, type }){
     return(
         <EntryInfo type={type}>
             <div className='container'>
+            <TrashBinOutline
+                color={'#740101'} 
+                height="17px"
+                width="17px"
+            />
                 <div className='date'>{formatDate}</div>
                 <div className='name'>{name}</div>
             </div>
@@ -29,7 +35,8 @@ const EntryInfo = styled.div`
     }
     .date{
         color: #c6c6c6;
-        margin-right: 30px;
+        margin-right: 25px;
+        margin-left: 15px;
     }
     .name{
         color: #000;
