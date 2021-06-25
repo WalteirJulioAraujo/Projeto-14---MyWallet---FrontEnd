@@ -30,6 +30,10 @@ export default function InOutFlow({ inOrOut }){
         setDisabled(true);
         const valueInCents = validValue*100;
         const validDescription = description.trim();
+        if(validDescription.length<3){
+            alert('A descrição deve ter ao menos 3 caracteres!');
+            return;
+        }
         const dateNow = Date.now();
         const body = { name: validDescription, value:valueInCents, type: inOrOut, dateNow };
         const config = { headers: { Authorization: `Bearer ${token}` } };

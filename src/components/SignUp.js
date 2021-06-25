@@ -21,6 +21,10 @@ export default function SignUp() {
             alert('As senhas não são iguais!');
             return;
         }
+        if(password.length<3){
+            alert('A senha deve ter no mínimo 3 caracteres!');
+            return;
+        }
         setDisabled(true);
 
         const validName = name.trim(); 
