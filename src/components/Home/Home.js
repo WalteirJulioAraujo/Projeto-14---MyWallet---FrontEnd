@@ -2,17 +2,16 @@ import { ExitOutline } from 'react-ionicons';
 import { useHistory } from 'react-router-dom';
 import { AddCircleOutline } from 'react-ionicons'
 import { RemoveCircleOutline } from 'react-ionicons'
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import Entry from '../Entry';
-import { Statement, EmptyStatement, NameDiv, Container, InOutContainer } from './StylesHome.js'
+import { Statement, EmptyStatement, NameDiv, Container, InOutContainer, Balance } from './StylesHome.js'
 import axios from 'axios';
-import UserContext from '../../contexts/UserContext';
 
 export default function Home({ setInOrOut }){
-    const { user } = useContext(UserContext);
     const [ hasEntrys, setHasEntrys ] = useState(true);
     const [ data, setData ] = useState([]);
     const [ searchError, setSearchError ] = useState(false);
+    const [ total, setTotal ] = useState("");
     let history = useHistory();
 
     const userSession = JSON.parse(sessionStorage.getItem('userMyWallet'));
@@ -25,7 +24,8 @@ export default function Home({ setInOrOut }){
         const request = axios.get('http://localhost:4001/inout',config);
         request.then((e)=>{
             e.data.data.length? setHasEntrys(true) : setHasEntrys(false);
-            console.log(e.data.total);
+            const totalFormat = ((e.data.total/100).toFixed(2)).replace('.',',');
+            setTotal(totalFormat);
             setData(e.data.data);
         });
         request.catch(()=>{
@@ -36,7 +36,6 @@ export default function Home({ setInOrOut }){
 
     function Exit(){
         sessionStorage.removeItem("userMyWallet");
-        // sessionStorage.removeItem("userMyWalletToken");
         history.push('/');
     }
 
@@ -64,7 +63,13 @@ export default function Home({ setInOrOut }){
             </Container>
             {hasEntrys
             ?   <Statement>
-                    {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} value={e.value} type={e.type} />)}
+                    <div>
+                        {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} value={e.value} type={e.type} />)}
+                    </div>
+                    <Balance total={total}>
+                        <div className='total'>Saldo</div>
+                        <div className='totalValue'>{total}</div>
+                    </Balance>
                 </Statement>
             :   <EmptyStatement>
                 {searchError

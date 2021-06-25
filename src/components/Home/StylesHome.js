@@ -34,7 +34,9 @@ export const Statement = styled.div`
     margin: 22px auto 0 auto;
     border-radius: 5px;
     background-color: #fff;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 export const EmptyStatement = styled.div`
     width: 85%;
@@ -67,5 +69,21 @@ export const Container = styled.div`
 
     .exitIcon:hover{
         cursor: pointer;
+    }
+`
+
+export const Balance = styled.div`
+    font-size: 17px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ddd7d7;
+    .total{
+        font-weight: bold;
+        color: #000;
+    }
+    .totalValue{
+        color: ${ props => props.total >= 0 ? (props.total = 0 ? '898585' : '#42AD22' ): '#C73B19' };
     }
 `
