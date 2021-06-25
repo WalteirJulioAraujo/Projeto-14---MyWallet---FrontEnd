@@ -84,6 +84,7 @@ export const Balance = styled.div`
         color: #000;
     }
     .totalValue{
-        color: ${ props => props.total >= 0 ? (props.total = 0 ? '898585' : '#42AD22' ): '#C73B19' };
+        color: ${ props => props.total >= 0 ? (props.total === 0 ? '#000' : '#42AD22' ) : '#C73B19' };
     }
+
 `

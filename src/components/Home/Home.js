@@ -12,13 +12,14 @@ export default function Home({ setInOrOut }){
     const [ data, setData ] = useState([]);
     const [ searchError, setSearchError ] = useState(false);
     const [ total, setTotal ] = useState("");
+    const [ totalNumber, setTotalNumber ] = useState(0);
     let history = useHistory();
 
     const userSession = JSON.parse(sessionStorage.getItem('userMyWallet'));
     const token = userSession.token;
     
     useEffect(()=>SearchData(),[]);
-
+    
     function SearchData(){
         const config = { headers: { Authorization: `Bearer ${token}` } };
         const request = axios.get('http://localhost:4001/inout',config);
@@ -27,6 +28,7 @@ export default function Home({ setInOrOut }){
             const totalFormat = ((e.data.total/100).toFixed(2)).replace('.',',');
             setTotal(totalFormat);
             setData(e.data.data);
+            setTotalNumber(e.data.total);
         });
         request.catch(()=>{
             setHasEntrys(false);
@@ -64,9 +66,9 @@ export default function Home({ setInOrOut }){
             {hasEntrys
             ?   <Statement>
                     <div>
-                        {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} value={e.value} type={e.type} />)}
+                        {data.map((e,i)=><Entry key={i} date={e.date} name={e.name} value={e.value} type={e.type} datenow={e.datenow} SearchData={SearchData}/>)}
                     </div>
-                    <Balance total={total}>
+                    <Balance total={totalNumber}>
                         <div className='total'>Saldo</div>
                         <div className='totalValue'>{total}</div>
                     </Balance>
