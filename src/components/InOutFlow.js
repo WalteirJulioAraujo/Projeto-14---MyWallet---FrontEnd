@@ -16,6 +16,14 @@ export default function InOutFlow({ inOrOut }){
 
     function SendForms(e){
         e.preventDefault();
+
+        if(!description.trim()){
+            return alert('A descrição deve ser inserida');
+        }
+        if(Math.abs(value)>21474836){
+            return alert('O valor máximo permitido é 21474836');
+        }
+
         const validValue = Number(value).toFixed(2);
 
         console.log(inOrOut);
