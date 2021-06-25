@@ -5,7 +5,7 @@ import UserContext from "../contexts/UserContext";
 import { Logo,InputFields, SubmitButton, RedirectTo } from "../styledComponents/Content";
 
 export default function LogIn(){
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ disabled, setDisabled ] = useState(false);

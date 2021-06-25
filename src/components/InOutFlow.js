@@ -1,13 +1,10 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
-import { Alert } from 'react-ionicons';
+import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import UserContext from '../contexts/UserContext';
 import { InputFields, SubmitButton } from '../styledComponents/Content';
 
 export default function InOutFlow({ inOrOut }){
-    const { user } = useContext(UserContext);
     const [ value, setvalue ] = useState("");
     const [ description, setDescription ] = useState("");
     const [ disabled, setDisabled ] = useState(false);
