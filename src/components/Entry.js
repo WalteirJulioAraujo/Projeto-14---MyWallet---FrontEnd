@@ -29,6 +29,7 @@ export default function Entry({ date, name, value, type, datenow, SearchData }){
         <EntryInfo type={type}>
             <div className='container'>
             <TrashBinOutline
+                className='trashIcon'
                 onClick={deleteTransaction}
                 color={'#740101'} 
                 height="17px"
@@ -65,5 +66,8 @@ const EntryInfo = styled.div`
 
     .value{
         color: ${ props => props.type  ? '#42AD22':'#C73B19'}
+    }
+    .trashIcon{
+        cursor: pointer;
     }
 `;
