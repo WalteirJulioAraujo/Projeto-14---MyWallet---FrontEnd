@@ -29,7 +29,7 @@ export default function SignUp() {
 
         const validName = name.trim(); 
         const body = { name: validName, email, password };
-        const request = axios.post('http://localhost:4001/signup',body);
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`,body);
         request.then((e)=>{
             history.push('/');
         })

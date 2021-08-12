@@ -26,7 +26,6 @@ export default function InOutFlow({ inOrOut }){
 
         const validValue = Number(value).toFixed(2);
 
-        console.log(inOrOut);
         setDisabled(true);
         const valueInCents = validValue*100;
         const validDescription = description.trim();
@@ -37,7 +36,7 @@ export default function InOutFlow({ inOrOut }){
         const dateNow = Date.now();
         const body = { name: validDescription, value:valueInCents, type: inOrOut, dateNow };
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const request = axios.post('http://localhost:4001/inout',body,config);
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/inout`,body,config);
         request.then(()=>{
             history.push('/home')
         });

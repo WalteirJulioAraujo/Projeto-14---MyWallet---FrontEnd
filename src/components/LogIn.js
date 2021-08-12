@@ -21,7 +21,7 @@ export default function LogIn(){
         setDisabled(true);
     
         const body = { email, password };
-        const request = axios.post('http://localhost:4001/login',body);
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`,body);
         request.then((e)=>{
             sessionStorage.setItem("userMyWallet", JSON.stringify(e.data));
             setUser(e.data.name);

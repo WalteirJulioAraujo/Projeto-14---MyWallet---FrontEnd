@@ -14,7 +14,7 @@ export default function Entry({ date, name, value, type, datenow, SearchData }){
         if(window.confirm("Deseja apagar essa transação?")){
             const config = { headers: { Authorization: `Bearer ${token}` } };
             const body = { date, name, value, type, datenow };
-            const request = axios.post('http://localhost:4001/deleteTransaction', body, config);
+            const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/deleteTransaction`, body, config);
             request.then(()=>{
                 SearchData();
             })
