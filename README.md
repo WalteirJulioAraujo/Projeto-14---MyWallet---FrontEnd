@@ -2,8 +2,12 @@
 It is a simple and very efficient financial controller that can easily receive features that make it more complete. Track your revenues and expenses to learn how you spend your money and know all the time how much you have.
 </br>
 </br>
+<img src="https://i.ibb.co/pz60M2v/App-Example.jpg" alt="App-Example">
+</br>
+</br>
 Try it out now at https://my-wallet-frontend-rho.vercel.app/
-<br/>
+
+
 ## **About**
 This is an web application with which lots of people can manage their own expenses and revenues. Below are the implemented features:
 
