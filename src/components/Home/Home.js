@@ -22,7 +22,7 @@ export default function Home({ setInOrOut }){
     
     function SearchData(){
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const request = axios.get('http://localhost:4001/inout',config);
+        const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/inout`,config);
         request.then((e)=>{
             e.data.data.length? setHasEntrys(true) : setHasEntrys(false);
             const totalFormat = ((e.data.total/100).toFixed(2)).replace('.',',');
